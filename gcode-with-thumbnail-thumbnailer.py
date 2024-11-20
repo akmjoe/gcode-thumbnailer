@@ -50,6 +50,12 @@ def make_thumbnail(inputname, outputname, size=0):
 
         if not thumb_matches:
             sys.stderr.write("Thumbnail data not found\n")
+            default = open("/usr/share/icons/hicolor/48x48/apps/gcode-icon.png", "rb")
+            image = default.read()
+            # Write icon to output_file
+            thumb = open(outputname, "wb")
+            thumb.write(image)
+            thumb.close()
             return 1
 
         for idx, match in enumerate(thumb_matches):
